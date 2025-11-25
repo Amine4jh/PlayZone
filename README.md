@@ -1,6 +1,11 @@
-# 🏟️ PlayZone | PHP Sport Field Reservation System
+<div align="center">
+<h1 align="center">🏟️ PlayZone | PHP Sport Field Reservation System</h1>
 
 PlayZone is a web application built with PHP that allows users to register, log in, and reserve sports fields (Tennis, Padel, Football, ...). It features role-based access control, reservation management, field administration, and time slot validation. The project is built with PHP and MySQL on the backend and HTML/CSS/Bootstrap/JavaScript on the frontend.
+
+<a href="https://playzone.infinityfree.me/"><strong>➥ Live Demo</strong></a>
+
+</div>
 
 ---
 
@@ -25,51 +30,56 @@ PlayZone is a web application built with PHP that allows users to register, log 
 ## 🗃️ Database Schema Overview
 
 ### `utilisateurs`
-| Field         | Type         | Description                    |
-|---------------|--------------|--------------------------------|
-| id            | INT, PK, AI  | User ID                        |
-| nom           | VARCHAR      | Full name                      |
-| email         | VARCHAR      | Unique email                   |
-| password_hash | VARCHAR      | Hashed password                |
-| role          | ENUM         | 'admin' or 'client'            |
-| created_at    | DATE         | Acoount created date           |
-| avatar        | VARCHAR      | avatar image                   |
+
+| Field         | Type        | Description          |
+| ------------- | ----------- | -------------------- |
+| id            | INT, PK, AI | User ID              |
+| nom           | VARCHAR     | Full name            |
+| email         | VARCHAR     | Unique email         |
+| password_hash | VARCHAR     | Hashed password      |
+| role          | ENUM        | 'admin' or 'client'  |
+| created_at    | DATE        | Acoount created date |
+| avatar        | VARCHAR     | avatar image         |
 
 ### `sports`
-| Field | Type         | Description         |
-|-------|--------------|---------------------|
-| id    | INT, PK, AI  | Sport ID            |
-| nom   | VARCHAR      | Sport name          |
+
+| Field | Type        | Description |
+| ----- | ----------- | ----------- |
+| id    | INT, PK, AI | Sport ID    |
+| nom   | VARCHAR     | Sport name  |
 
 ### `terrains`
-| Field     | Type         | Description         |
-|-----------|--------------|---------------------|
-| id        | INT, PK, AI  | Field ID            |
-| address   | TEXT         | Field location      |
-| sport_id  | INT, FK      | Linked sport        |
-| nom       | VARCHAR      | Field name or number|
-| image     | VARCHAR      | Field image         |
+
+| Field    | Type        | Description          |
+| -------- | ----------- | -------------------- |
+| id       | INT, PK, AI | Field ID             |
+| address  | TEXT        | Field location       |
+| sport_id | INT, FK     | Linked sport         |
+| nom      | VARCHAR     | Field name or number |
+| image    | VARCHAR     | Field image          |
 
 ### `reservation`
-| Field        | Type         | Description                          |
-|--------------|--------------|--------------------------------------|
-| id           | INT, PK, AI  | Reservation ID                       |
-| user_id      | INT, FK      | ID of the user                       |
-| terrain_id   | INT, FK      | ID of the reserved field             |
-| date         | DATE         | Date of reservation                  |
-| heure_debut  | TIME         | Start time                           |
-| heure_fin    | TIME         | End time                             |
-| statut       | ENUM         | 'en attente', 'confirmée', 'annulée' |
+
+| Field       | Type        | Description                          |
+| ----------- | ----------- | ------------------------------------ |
+| id          | INT, PK, AI | Reservation ID                       |
+| user_id     | INT, FK     | ID of the user                       |
+| terrain_id  | INT, FK     | ID of the reserved field             |
+| date        | DATE        | Date of reservation                  |
+| heure_debut | TIME        | Start time                           |
+| heure_fin   | TIME        | End time                             |
+| statut      | ENUM        | 'en attente', 'confirmée', 'annulée' |
 
 ### `date_heures_fermees`
-| Field            | Type         | Description                  |
-|------------------|--------------|------------------------------|
-| id               | INT, PK, AI  | Closed hours ID              |
-| terrain_id       | INT, FK      | Field affected               |
-| date             | DATE         | Closure date                 |
-| debut_fermeture  | TIME         | Start time                   |
-| fin_fermeture    | TIME         | End time                     |
-| motif            | TEXT         | Reason for closure           |
+
+| Field           | Type        | Description        |
+| --------------- | ----------- | ------------------ |
+| id              | INT, PK, AI | Closed hours ID    |
+| terrain_id      | INT, FK     | Field affected     |
+| date            | DATE        | Closure date       |
+| debut_fermeture | TIME        | Start time         |
+| fin_fermeture   | TIME        | End time           |
+| motif           | TEXT        | Reason for closure |
 
 ---
 
@@ -97,6 +107,7 @@ PlayZone is a web application built with PHP that allows users to register, log 
 ---
 
 ## 🔧 Admin Features
+
 - **Dashboard**:
   - View insights (Total Client, Total Reservations)
   - View recent reservations (Last 10 reservations added)
@@ -131,11 +142,12 @@ PlayZone is a web application built with PHP that allows users to register, log 
 ---
 
 ## ⚙️ How to Run Locally
+
 1. Install WAMP or XAMPP
 
 2. Clone this repo:
 
-```bash 
+```bash
 git clone https://github.com/Amine4jh/PHP_sport_field_reservation
 ```
 
@@ -154,14 +166,14 @@ GitHub: [Amine4jh](https://github.com/Amine4jh)
 
 ## 📸 Screenshots
 
- - **Admin Dashboard**:
-![Admin Dashboard Preview](assets/images/preview/admin_dashboard.png)
+- **Admin Dashboard**:
+  ![Admin Dashboard Preview](assets/images/preview/admin_dashboard.png)
 
- - **Client Dashboard**:
-![Admin Dashboard Preview](assets/images/preview/client_dashboard.png)
+- **Client Dashboard**:
+  ![Admin Dashboard Preview](assets/images/preview/client_dashboard.png)
 
- - **Login**:
-![Admin Dashboard Preview](assets/images/preview/login.png)
+- **Login**:
+  ![Admin Dashboard Preview](assets/images/preview/login.png)
 
- - **Registration**:
-![Admin Dashboard Preview](assets/images/preview/registration.png)
+- **Registration**:
+  ![Admin Dashboard Preview](assets/images/preview/registration.png)
