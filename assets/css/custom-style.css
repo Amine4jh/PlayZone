@@ -1,0 +1,207 @@
+#input-error{
+    font-size: 12px;
+    color: red;
+}
+
+/* ========== Make a manual backdrop ========== */
+.modal-backdrop {
+    display: none;
+}
+.modal::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+/*==============================================*/
+
+#sportCard, #fieldCard{
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+}
+#formLabel{
+    font-size: 12px;
+    margin: 15px 0 0 5px;
+    display: block;
+}
+table{
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+th:first-child{
+    border-radius: 10px 0 0 0;
+}
+th:last-child{
+    border-radius: 0 10px 0 0;
+}
+td{
+    font-size: 14px;
+}
+#floatingTextarea{
+    resize: none;
+}
+
+
+#tableContainer{
+    margin-top: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+#closingHoursForm{
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    /* display: none; */
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+#closingHoursForm.active{
+    opacity: 1;
+    max-height: 550px;
+}
+.slide-down {
+    transform: translateY(0);
+    opacity: 1;
+    max-height: 550px;
+}
+.slide-up {
+    transform: translateY(20px);
+    opacity: 0;
+    max-height: 0;
+}
+
+
+#noDataMsg{
+    text-align: center;
+    margin: 80px 0 120px 0;
+    color: rgba(0, 0, 0, 0.75);
+}
+
+
+/* View and Edit Profile Card */
+#card-container,
+#edit-card-container{
+    display: flex;
+    justify-content: center;
+}
+#card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 50px 30px 50px;
+    margin-top: 40px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.3);
+}
+#image{
+    border: 2px solid #0cc0df;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    transition: all 1s ease;
+}
+#image:hover{
+    transform: scale(1.3);
+    box-shadow: 0 0 10px #0cc0df;
+}
+#card img{
+    border-radius: 50%;
+}
+#card h1{
+    font-size: 28px;
+    margin: 30px 0 0 0;
+}
+#card h3{
+    font-size: 16px;
+    opacity: 0.7;
+    margin-bottom: 20px;
+}
+#card #social{
+    width: 250px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#card #social a{
+    color: #000;
+    font-size: 35px;
+    transition: transform 1s ease, color 0.3s ease;
+}
+#card #social a:hover{
+    color: #0cc0df;
+    transform: scale(1.5) rotate(10deg);
+}
+#card #edit{
+    padding: 5px 7px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease;
+}
+#card #edit i{
+    font-size: 25px;
+    color: #000;
+    transition: all 0.5s ease;
+}
+#card #edit:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+#card #edit:hover i{
+    color: #0cc0df;
+}
+
+#edit-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 50px 30px 50px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.3);
+}
+#edit-card #edit-image{
+    border: 2px solid #0cc0df;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+#edit-card img{
+    border-radius: 50%;
+}
+#edit-card form{
+    margin-top: 20px;
+}
+#edit-card form select,
+#edit-card form input{
+    margin-bottom: 10px;
+}
+#edit-card form button{
+    width: 100%;
+}
+
+#footer-social-links i{
+    font-size: 24px;
+}
+
+#no-reserv{
+    margin: 50px auto 80px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#no-reserv h5{
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.75);
+    text-align: center;
+    margin-bottom: 20px;
+}
+#no-reserv a, #resLink{
+    font-weight: bold;
+    color: #fff;
+}

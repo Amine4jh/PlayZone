@@ -1,0 +1,111 @@
+name: PlayZone CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    name: Prepare
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate project structure
+        run: |
+          test -f index.php
+          test -d assets
+
+  test:
+    name: Test
+    needs: prepare
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+
+      - name: PHP syntax check
+        run: |
+          set -e
+          find . -type f -name "*.php" -not -path "./.git/*" -print0 | xargs -0 -n1 php -l
+
+  quality:
+    name: SonarCloud Quality
+    needs: test
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate SonarCloud secret
+        run: |
+          if [ -z "${{ secrets.SONAR_TOKEN }}" ]; then
+            echo "Missing SONAR_TOKEN repository secret."
+            exit 1
+          fi
+
+      - name: SonarCloud scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    name: Deploy via FTP
+    needs: quality
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate FTP and DB secrets
+        run: |
+          if [ -z "${{ secrets.FTP_SERVER }}" ] || [ -z "${{ secrets.FTP_USERNAME }}" ] || [ -z "${{ secrets.FTP_PASSWORD }}" ] || [ -z "${{ secrets.DB_HOST }}" ] || [ -z "${{ secrets.DB_USER }}" ] || [ -z "${{ secrets.DB_PASS }}" ] || [ -z "${{ secrets.DB_NAME }}" ]; then
+            echo "Missing one or more required secrets: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, DB_HOST, DB_USER, DB_PASS, DB_NAME."
+            exit 1
+          fi
+
+      - name: Create Production .env file
+        run: |
+          touch .env
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+          echo "DB_USER=${{ secrets.FTP_USERNAME }}" >> .env
+          echo "DB_PASS=${{ secrets.FTP_PASSWORD }}" >> .env
+          echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
+
+      - name: FTP deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /htdocs/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/README.md
+            **/sonar-project.properties
+            **/assets/Passwords.txt
+            **/assets/*.sql
