@@ -57,6 +57,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Validate SonarCloud secret
+        run: |
+          if [ -z "${{ secrets.SONAR_TOKEN }}" ]; then
+            echo "Missing SONAR_TOKEN repository secret."
+            exit 1
+          fi
+
       - name: SonarCloud scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
