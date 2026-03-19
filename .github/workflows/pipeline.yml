@@ -81,8 +81,8 @@ jobs:
 
       - name: Validate FTP and DB secrets
         run: |
-          if [ -z "${{ secrets.FTP_SERVER }}" ] || [ -z "${{ secrets.FTP_USERNAME }}" ] || [ -z "${{ secrets.FTP_PASSWORD }}" ] || [ -z "${{ secrets.DB_HOST }}" ] || [ -z "${{ secrets.DB_USER }}" ] || [ -z "${{ secrets.DB_PASS }}" ] || [ -z "${{ secrets.DB_NAME }}" ]; then
-            echo "Missing one or more required secrets: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, DB_HOST, DB_USER, DB_PASS, DB_NAME."
+          if [ -z "${{ secrets.FTP_SERVER }}" ] || [ -z "${{ secrets.FTP_USERNAME }}" ] || [ -z "${{ secrets.FTP_PASSWORD }}" ] || [ -z "${{ secrets.DB_HOST }}" ] || [ -z "${{ secrets.FTP_USERNAME }}" ] || [ -z "${{ secrets.FTP_PASSWORD }}" ] || [ -z "${{ secrets.DB_NAME }}" ]; then
+            echo "Missing one or more required secrets: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, DB_HOST, DB_NAME."
             exit 1
           fi
 
