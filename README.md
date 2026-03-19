@@ -3,7 +3,7 @@
 
 PlayZone is a web application built with PHP that allows users to register, log in, and reserve sports fields (Tennis, Padel, Football, ...). It features role-based access control, reservation management, field administration, and time slot validation. The project is built with PHP and MySQL on the backend and HTML/CSS/Bootstrap/JavaScript on the frontend.
 
-<a href="https://playzone.infinityfree.me/"><strong>➥ Live Demo</strong></a>
+<a href="https://play-zone.infinityfreeapp.com/"><strong>➥ Live Demo</strong></a>
 
 </div>
 
